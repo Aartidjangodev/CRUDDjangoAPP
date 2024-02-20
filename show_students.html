@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> show students Record</title>
+</head>
+<body>
+<h1 align="center"> Students Data</h1>
+<table align="center" border="1">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Gender</th>
+        <th>Hobbies</th>
+        <th>CountryName</th>
+        <th>ACTIONs</th>
+    </tr>
+    {% for d in data %}
+    <tr>
+        <td>{{d.id}}</td>
+        <td>{{d.name}}</td>
+        <td>{{d.gender}}</td>
+        <td>{{d.hobbies}}</td>
+        <td>{{d.country_name}}</td>
+        <td>
+            <a href="{% url 'delete' d.id %}">Delete</a>
+            <a href="{% url 'edit' d.id %}">Edit</a>
+        </td>
+    </tr>
+    {% endfor %}
+
+</table>
+<div align="center">
+    <a href="{% url 'loadForm' %}">Add New Record</a>
+</div>
+</body>
+</html>

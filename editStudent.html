@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Form</title>
+</head>
+<body>
+<h1 align="center"> Edit Student form</h1>
+<form action="/update/{{data.id}}"  method="POST">
+  {% csrf_token %}
+  <table align="center">
+    <tr>
+      <td>Name:</td>
+      <td><input type="text"name="sname" value="{{data.name}}">
+      </td>
+    </tr>
+    <tr>
+      <td>Gender:</td>
+      <td>
+        {% if data.gender == 'male' %}
+        <input type="radio" name="gender" value="male"  checked>Male
+        <input type="radio" name="gender" value="female">Female
+        {% elif data.gender == 'female' %}
+        <input type="radio" name="gender" value="male"  >Male
+        <input type="radio" name="gender" value="female" checked>Female
+         {% else %}
+        <input type="radio" name="gender" value="male"  >Male
+        <input type="radio" name="gender" value="female" >Female
+          {% endif %}
+
+      </td>
+    </tr>
+     <tr>
+      <td>Hobbies:</td>
+         <td>
+             {% if 'sing' in data.hobbies %}
+             <input type="checkbox" name="chk[]" value="sing" checked>sing
+             {% else %}
+             <input type="checkbox" name="chk[]" value="sing">sing
+              {% endif %}
+             {% if 'dance' in data.hobbies %}
+             <input type="checkbox" name="chk[]" value="dance" checked>Dance
+             {% else %}
+             <input type="checkbox" name="chk[]" value="dance">Dance
+             {% endif %}
+             {% if 'read' in data.hobbies %}
+             <input type="checkbox" name="chk[]" value="read" checked>Read
+             {% else %}
+             <input type="checkbox" name="chk[]" value="read">Read
+             {% endif %}
+
+         </td>
+    </tr>
+      <tr>
+           <td>Country:</td>
+           <td><select name="country">
+              <option>Select the country</option>
+             {% for c in cntry %}
+               {% if c.id == data.countryid %}
+               <option value="{{c.id}}" selected>{{c.country_name}}</option>
+               {% else %}
+                <option value="{{c.id}}">{{c.country_name}}</option>
+               {% endif %}
+             {% endfor %}
+               </select>
+      </td>
+    </tr>
+
+
+    <tr>
+      <td></td>
+      <td><button type="submit">update</button>
+      </td>
+    </tr>
+  </table>
+
+</form>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Form</title>
+</head>
+<body>
+<form action="insert" method="POST">
+  {% csrf_token %}
+  <table align="center">
+    <tr>
+      <td>Name:</td>
+      <td><input type="text"name="sname">
+      </td>
+    </tr>
+    <tr>
+      <td>Gender:</td>
+      <td><input type="radio" name="gender" value="male">Male
+        <input type="radio" name="gender" value="male">Female
+      </td>
+    </tr>
+    <tr>
+      <td>Hobbies:</td>
+      <td><input type="checkbox" name="chk[]" value="sing">sing
+        <input type="checkbox" name="chk[]" value="dance">Dance
+        <input type="checkbox" name="chk[]" value="read">Read
+      </td>
+    </tr>
+     <tr>
+      <td>Country:</td>
+      <td><select name="country">
+           <option>Select the country</option>
+          {% for c in cntry %}
+          <option value="{{c.id}}">{{c.country_name}}</option>
+          {% endfor %}
+      </select>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><button type="submit"> submit</button>
+      </td>
+    </tr>
+  </table>
+
+</form>
+
+</body>
+</html>
